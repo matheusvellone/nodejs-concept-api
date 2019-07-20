@@ -1,0 +1,93 @@
+{
+  "generic-unauthorized": "generic-unauthorized",
+  "empty-token-unauthorized": "empty-token-unauthorized",
+  "not-authorized-unauthorized": "not-authorized-unauthorized",
+  "invalid-token-unauthorized": "invalid-token-unauthorized",
+  "validation": {
+    "any": {
+      "required": "Campo Obrigatório",
+      "empty": "Campo Vazio",
+      "allowOnly": "validation.any.allowOnly"
+    },
+    "string": {
+      "email": "Não é um email válido",
+      "base": "Deve ser um texto",
+      "regex": {
+        "base": "Valor fora do padrão esperado"
+      },
+      "guid": "validation.string.guid",
+      "uri": "validation.string.uri",
+      "length": "validation.string.length"
+    },
+    "boolean": {
+      "base": "Deve ser um booleano (true/false)"
+    },
+    "object": {
+      "base": "Deve ser um JSON"
+    },
+    "number": {
+      "base": "Deve ser um número",
+      "integer": "Deve ser um número inteiro",
+      "max": "Deve ser menor ou igual a {{limit}}",
+      "min": "Deve ser maior ou igual a {{limit}}"
+    },
+    "date": {
+      "base": "Deve ser uma data"
+    }
+  },
+  "validation-error": "Erro de validação",
+  "invalid": {
+    "password": "Senha incorreta",
+    "body": "Body da request inválido",
+    "jwt": "Token de login inválido",
+    "facebookToken": "invalid.facebookToken",
+    "notificationToken": "invalid.notificationToken",
+    "userInvalid": "invalid.userInvalid"
+  },
+  "status": {
+    "ok": "OK"
+  },
+  "signed": {
+    "in": "Login feito com sucesso",
+    "up": "signed.up"
+  },
+  "not-found": {
+    "user": "not-found.user",
+    "url": "Rota não encontrada"
+  },
+  "conflict": {
+    "user": "conflict.user"
+  },
+  "expired": {
+    "jwt": "expired.jwt"
+  },
+  "unauthorized": {
+    "empty-token": "unauthorized.empty-token",
+    "not-authorized": "unauthorized.not-authorized",
+    "jwt-incomplete": "unauthorized.jwt-incomplete",
+    "jwt-invalid": "Token de login com formato inválido",
+    "jwt": "Token de login expirado"
+  },
+  "token": {
+    "refresh": "Token atualizado",
+    "ok": "OK"
+  },
+  "forbidden": {
+    "jwt": {
+      "level": "forbidden.jwt.level"
+    }
+  },
+  "robots": {
+    "txt": "User-agent: *\nDisallow: /"
+  },
+  "http": {
+    "500": "Erro Interno"
+  },
+  "user": {
+    "notificationTokenUpdated": "user.notificationTokenUpdated",
+    "list": "user.list"
+  },
+  "notification": {
+    "sent": "notification.sent"
+  }
+}

@@ -1,0 +1,43 @@
+version: "3"
+services:
+  postgres:
+    container_name: 'dev_postgres'
+    image: postgres:10
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: abc12345678
+    networks:
+      - application
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+
+  api:
+    container_name: 'dev_api'
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /code
+    restart: always
+    volumes:
+      - ./:/code
+      - /code/node_modules
+    networks:
+      - application
+    environment:
+      - NODE_ENV=development
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    command: "npm run start-dev"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/status"]
+      interval: 10s
+      retries: 5
+
+networks:
+  application:

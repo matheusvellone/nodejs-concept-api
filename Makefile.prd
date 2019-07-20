@@ -1,0 +1,39 @@
+.PHONY: restart prod
+
+console:
+	@docker-compose -f docker-compose.prod.yml exec api node console.js
+
+# Deploy
+update: setupdb restart
+
+pull:
+	@git fetch origin
+	@git reset --hard origin/master
+
+restart:
+	@docker exec prod_api npm install
+	@docker exec prod_api npm run pm2-restart
+
+# Production
+up: prod nginx
+
+prod: setupdb api
+
+nginx:
+	@docker-compose -f docker-compose.prod.yml up -d nginx-proxy
+	@docker-compose -f docker-compose.prod.yml up -d nginx-letsencrypt
+
+api:
+	@docker-compose -f docker-compose.prod.yml up --build -d api
+
+setupdb: database migrate seed
+
+database:
+	@docker-compose -f docker-compose.prod.yml up -d postgres
+	@sleep 3
+
+migrate:
+	@docker-compose -f docker-compose.prod.yml run --rm api npm run migrate
+
+seed:
+	@docker-compose -f docker-compose.prod.yml run --rm api npm run seed

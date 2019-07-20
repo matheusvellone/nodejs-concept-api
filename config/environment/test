@@ -1,0 +1,11 @@
+NODE_ENV=test
+
+DATABASE_HOST=postgres
+DATABASE_DATABASE=postgres
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=abc12345678
+DATABASE_DIALECT=postgres
+
+JWT_SECRET=i_would_never_think_about_this_secret
+
+SALT=$2a$10$Bp3LOrgFhSzgEgG/FvcLYO0gPkDo3Qf6SHYGZ14hUnSl1lGCvchfS

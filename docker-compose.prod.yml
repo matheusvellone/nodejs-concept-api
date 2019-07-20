@@ -1,0 +1,83 @@
+version: "3.5"
+services:
+  api:
+    container_name: 'prod_api'
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /code
+    restart: always
+    volumes:
+      - ./:/code
+      - /code/node_modules
+    networks:
+      - server
+    environment:
+      - VIRTUAL_HOST=my_api.example.com
+      - LETSENCRYPT_HOST=my_api.example.com
+      - LETSENCRYPT_EMAIL=my_email.@example.com
+      - NODE_ENV=production
+      - PORT=3000
+    expose:
+      - 3000
+    command: "npm run start-prod"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/status"]
+      interval: 10s
+      retries: 5
+
+  postgres:
+    container_name: 'prod_postgres'
+    image: postgres:10
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: CHANGE_THIS_PASSWORD
+    volumes:
+      - database:/var/lib/postgresql/data
+    networks:
+      - server
+    expose:
+      - 5432
+
+  nginx-letsencrypt:
+    container_name: 'nginx-proxy-letsencrypt'
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
+    depends_on:
+      - nginx-proxy
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+    volumes:
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - server
+
+  nginx-proxy:
+    container_name: 'nginx-proxy'
+    image: jwilder/nginx-proxy
+    restart: always
+    volumes:
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - server
+    ports:
+      - 80:80
+      - 443:443
+
+networks:
+  server:
+    name: server
+
+volumes:
+  database:
+  certs:
+  html:
+  vhost:

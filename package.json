@@ -1,0 +1,63 @@
+{
+  "name": "nodejs-concept-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "nodemon src/bin/server.js",
+    "start-prod": "pm2-docker start pm2.config.js",
+    "pm2-restart": "pm2 reload pm2.config.js",
+    "lint": "eslint .",
+    "send-coverage-data": "cat ./coverage/lcov.info | coveralls",
+    "test-e2e": "jest --forceExit --config tests/e2e/jest.config.js",
+    "test-unit": "jest --config tests/unit/jest.config.js",
+    "test-unit-watch": "jest --config tests/unit/jest.config.js --watch",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheusvellone/nodejs-concept-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheusvellone/nodejs-concept-api/issues"
+  },
+  "homepage": "https://github.com/matheusvellone/nodejs-concept-api#readme",
+  "dependencies": {
+    "axios": "0.18.0",
+    "bcrypt": "3.0.4",
+    "bluebird": "3.5.3",
+    "body-parser": "1.18.3",
+    "compression": "1.7.4",
+    "cors": "2.8.5",
+    "cuid": "2.1.6",
+    "dotenv": "7.0.0",
+    "express": "4.16.4",
+    "i18n": "0.8.3",
+    "joi": "14.3.1",
+    "jsonwebtoken": "8.5.1",
+    "log4js": "4.0.2",
+    "moment": "2.24.0",
+    "on-finished": "2.3.0",
+    "pg": "7.9.0",
+    "pm2": "3.4.0",
+    "ramda": "0.26.1",
+    "sequelize": "5.1.0",
+    "uuid": "3.3.2"
+  },
+  "devDependencies": {
+    "coveralls": "3.0.3",
+    "cross-env": "5.2.0",
+    "eslint": "5.15.3",
+    "eslint-config-matheusvellone-base": "1.0.16",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-jest": "22.4.1",
+    "jest": "24.5.0",
+    "nodemon": "1.18.10",
+    "sequelize-cli": "5.4.0",
+    "sinon": "7.2.7",
+    "supertest": "4.0.2"
+  }
+}

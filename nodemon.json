@@ -1,0 +1,12 @@
+{
+  "verbose": true,
+  "ignore": [
+    "logs/*"
+  ],
+  "watch": [
+    "*"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

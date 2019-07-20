@@ -1,0 +1,83 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.3
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./
+
+  test:
+    docker:
+      - image: circleci/node:10.3
+        environment:
+          NODE_ENV: test
+      - image: circleci/postgres:10
+        name: postgres
+        environment:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: abc12345678
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Run linter
+          command: npm run lint
+      - run:
+          name: Run migrations
+          command: npm run migrate
+      - run:
+          name: Run seeders
+          command: npm run seed
+      - run:
+          name: Run unit tests
+          command: npm run test-unit
+      - run:
+          name: Run e2e tests
+          command: npm run test-e2e
+      - run:
+          name: Send Coverage data
+          command: npm run send-coverage-data
+
+  deploy:
+    working_directory: ~/project
+    machine: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SSH_FINGERPRINT "
+      - run:
+          name: Deploy to server
+          command: |
+              ssh -A $SERVER_USER@$SERVER_IP "cd my-api-directory; sudo make -f Makefile.prd pull; sudo make -f Makefile.prd update;"
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
