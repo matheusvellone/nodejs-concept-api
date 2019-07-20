@@ -44,25 +44,27 @@ module.exports.signUp = async (payload) => {
   return sign(jwtData)
 }
 
-module.exports.socialLogin = async (name, payload) => {
+module.exports.socialLogin = async (socialLoginName, payload) => {
   const {
     expiresAt,
     userId,
-  } = await socialMedia[name].decodeToken(payload.token)
+    email,
+    name,
+  } = await socialMedia[socialLoginName].decodeToken(payload.token)
 
   let user = await models.user.findOne({
     raw: true,
     where: {
-      [`${name}_id`]: userId,
+      [`${socialLoginName}_id`]: userId,
     },
   })
 
   if (!user) {
     user = await models.user.create({
-      [`${name}_id`]: userId,
-      email: payload.email,
+      [`${socialLoginName}_id`]: userId,
+      email,
+      name,
       level: AUTH.LEVELS.CLIENT,
-      name: payload.name,
     })
   }
 

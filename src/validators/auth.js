@@ -13,8 +13,6 @@ module.exports.login = Joi.object({
 
 module.exports.socialLogin = Joi.object({
   body: Joi.object({
-    email: Joi.string().required(),
-    name: Joi.string().required(),
     token: Joi.string().required(),
   }),
   params: Joi.object({

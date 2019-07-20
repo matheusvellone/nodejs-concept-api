@@ -11,6 +11,11 @@ module.exports = {
         type: DataTypes.STRING(50),
         allowNull: false,
       },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
       login: {
         type: DataTypes.STRING(30),
         allowNull: true,
@@ -37,5 +42,9 @@ module.exports = {
       updated_at: DataTypes.DATE,
       deleted_at: DataTypes.DATE,
     })
+  },
+
+  down(queryInterface) {
+    return queryInterface.dropTable(table)
   },
 }

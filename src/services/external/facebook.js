@@ -39,8 +39,20 @@ module.exports.decodeToken = async (token) => {
     throw new InvalidError('facebookToken')
   }
 
+  const userDataResponse = await axios.get(
+    `https://graph.facebook.com/${debugTokenResponse.data.data.user_id}`,
+    {
+      params: {
+        access_token: token,
+        fields: 'name,email',
+      },
+    }
+  )
+
   return {
     expiresAt: debugTokenResponse.data.data.expires_at * 1000,
     userId: debugTokenResponse.data.data.user_id,
+    name: userDataResponse.data.name,
+    email: userDataResponse.data.email,
   }
 }
