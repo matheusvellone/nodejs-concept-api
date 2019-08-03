@@ -6,10 +6,10 @@ NodeJS Concept Api
 - JWT Tokens
 - Social Logins
   - Facebook
-- Translate responses via `Accept-Language` header with I18n
 - Password hashing with [bcrypt](https://www.npmjs.com/package/bcrypt)
 - Input validation with [joi](https://www.npmjs.com/package/joi)
 - [Production Console](/docs/console.md)
+- Specific code for each response
 
 ## Requirements
 - `docker`

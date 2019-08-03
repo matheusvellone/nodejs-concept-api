@@ -16,17 +16,12 @@ module.exports.wrapAction = action => async (req, res, next) => {
       body = {},
     } = response
 
-    if (response.translate) {
-      response.translate.forEach(res.translate)
-    }
-
     if (response.headers) {
       forEach(([key, value]) => {
         res.set(key, value)
       }, toPairs(response.headers))
     }
 
-    // NOTE: will log body before applying i18n middleware
     res.body = body
 
     res.status(statusCode).send(body)

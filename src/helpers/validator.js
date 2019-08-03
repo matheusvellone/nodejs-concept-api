@@ -1,4 +1,4 @@
-const Joi = require('joi')
+const Joi = require('@hapi/joi')
 
 module.exports.getRuleRequired = (rule, required) => {
   if (required) {

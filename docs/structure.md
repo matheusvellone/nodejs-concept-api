@@ -6,8 +6,10 @@ Some items are hidden to simplify the
 
 ```
 nodejs-concept-api
+├── public
+│   └── locales // I18n files for front-end
 ├── config // Project configurations
-│   ├── environment // Environment variables by environment
+│   └── environment // Environment variables by environment
 ├── database
 │   ├── migrations // Project migrations
 │   └── seeders // Project seeders
@@ -17,9 +19,6 @@ nodejs-concept-api
 │   ├── controllers
 │   ├── Errors // Custom errors
 │   │   ├── BaseError.js // All custom errors should `extend` this Error
-│   ├── helpers
-│   │   ├── I18n
-│   │   │   └── locales // Translation files are located here
 │   ├── middlewares
 │   │   ├── index.js // Everything being exported via index.js
 │   ├── models

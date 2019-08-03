@@ -1,4 +1,3 @@
-const i18nMiddleware = require('./i18n')
 const errorHandler = require('./errorHandler')
 const apiLogger = require('./apiLogger')
 const requestMetadata = require('./requestMetadata')
@@ -8,7 +7,6 @@ const validate = require('./validator')
 module.exports = {
   apiLogger,
   errorHandler,
-  i18nMiddleware,
   requestMetadata,
   validate,
   anyAuth: auth.any,

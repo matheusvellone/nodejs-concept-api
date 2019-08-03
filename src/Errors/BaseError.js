@@ -9,10 +9,8 @@ class BaseError extends Error {
     super(message)
 
     if (!code) {
-      logger.error(`Error message '${message}' does not have a code: ${code}`)
+      logger.fatal(`Error message '${message}' does not have a code: ${code}`)
     }
-
-    this.translateKeys = []
 
     this.httpCode = httpCode
     this.body = {
@@ -21,16 +19,8 @@ class BaseError extends Error {
     }
   }
 
-  addTranslateKey(key) {
-    this.translateKeys.push(key)
-  }
-
   getBody() {
     return this.body
-  }
-
-  getTranslateKeys() {
-    return this.translateKeys
   }
 
   getHttpCode() {
