@@ -6,7 +6,6 @@ const compression = require('compression')
 
 const {
   apiLogger,
-  i18nMiddleware,
   errorHandler,
   requestMetadata,
 } = require('./middlewares/index')
@@ -20,7 +19,6 @@ const app = express()
 
 app.disable('x-powered-by')
 
-app.use(i18nMiddleware)
 app.use(cors())
 app.use(json())
 app.use(compression())
@@ -29,8 +27,6 @@ app.use(requestMetadata)
 
 app.use(appGenericRoutes)
 app.use(appRoutes)
-
-app.use(notFoundRoute)
 
 const notFoundResponse = () => {
   throw new NotFoundError('url')

@@ -1,10 +1,10 @@
-const Joi = require('joi')
+const Joi = require('@hapi/joi')
 
-const { AUTH } = require('../constants')
+const { schema: userSchema } = require('./user')
 
 const authSchema = Joi.object({
-  login: Joi.string().max(30).required(),
-  password: Joi.string().required(),
+  login: userSchema.login.required(),
+  password: userSchema.password.required(),
 })
 
 module.exports.login = Joi.object({
@@ -27,8 +27,8 @@ module.exports.register = Joi.object({
 module.exports.jwt = Joi.object({
   id: Joi.string().required(),
   user: Joi.object({
-    id: Joi.string().required(),
-    name: Joi.string().max(255).required(),
-    level: Joi.valid(Object.values(AUTH.LEVELS)).required(),
+    id: userSchema.id.required(),
+    name: userSchema.name.required(),
+    level: userSchema.level.required(),
   }).required(),
 })

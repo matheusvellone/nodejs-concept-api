@@ -1,4 +1,4 @@
-const ValidationError = require('../Errors/Validation')
+const JoiValidationError = require('../Errors/JoiValidation')
 
 module.exports = schema => (req, res, next) => {
   const { error, value } = schema.validate(req, {
@@ -7,7 +7,7 @@ module.exports = schema => (req, res, next) => {
   })
 
   if (error) {
-    const validationError = new ValidationError(error)
+    const validationError = new JoiValidationError(error)
     next(validationError)
   } else {
     req.body = value.body ? value.body : req.body

@@ -17,8 +17,6 @@ const normalizeError = (err, requestId) => {
 module.exports = (err, req, res, next) => {
   const error = normalizeError(err, req.requestId)
 
-  error.getTranslateKeys().forEach(res.translate)
-
   const httpCode = error.getHttpCode()
   const body = error.getBody()
   res.body = body
