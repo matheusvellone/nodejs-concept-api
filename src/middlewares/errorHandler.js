@@ -11,6 +11,10 @@ const normalizeError = (err, requestId) => {
     return new InvalidError('body')
   }
 
+  if (error.type === 'encoding.unsupported') {
+    return new InvalidError('content-encoding')
+  }
+
   return new InternalError(err, requestId)
 }
 
