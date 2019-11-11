@@ -1,4 +1,5 @@
 require('../dotenv')
+const { env } = require('./env')
 
 const {
   DATABASE_HOST,
@@ -18,7 +19,5 @@ const config = {
 }
 
 module.exports = {
-  development: config,
-  production: config,
-  test: config,
+  [env]: config,
 }
