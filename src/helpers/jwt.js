@@ -1,7 +1,7 @@
 const Jwt = require('jsonwebtoken')
 const { dissoc, pipe } = require('ramda')
 
-const { jwt } = require('../../config/auth')
+const { jwt } = require('../config/auth')
 const NotAuthorizedError = require('../Errors/NotAuthorized')
 const InvalidError = require('../Errors/Invalid')
 

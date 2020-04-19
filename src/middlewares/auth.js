@@ -4,7 +4,6 @@ const NotAuthorizedError = require('../Errors/NotAuthorized')
 const ForbiddenError = require('../Errors/Forbidden')
 const { AUTH } = require('../constants')
 const { jwt: jwtValidator } = require('../validators/auth')
-const { models } = require('../database')
 
 const { HEADER, LEVELS } = AUTH
 

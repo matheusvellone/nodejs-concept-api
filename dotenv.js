@@ -1,7 +1,7 @@
 const { resolve } = require('path')
 const dotenv = require('dotenv')
 
-const { env } = require('./config/env')
+const { env } = require('./src/config/env')
 
 const validEnvs = [
   'production',

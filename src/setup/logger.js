@@ -1,12 +1,9 @@
 const log4js = require('log4js')
 const { assocPath, isNil, path } = require('ramda')
 
-const { isProd, env } = require('../../config/env')
+const { isProd } = require('../config/env')
 
-const logLevels = {
-  development: 'WARN',
-  production: 'ALL',
-}
+const logLevel = isProd ? 'ALL' : 'WARN'
 const logType = isProd ? 'apiFile' : 'console'
 
 const log4jsConfig = {
@@ -26,7 +23,7 @@ const log4jsConfig = {
   categories: {
     api: {
       appenders: [logType],
-      level: logLevels[env],
+      level: logLevel,
     },
     default: {
       appenders: ['console'],

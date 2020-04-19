@@ -7,7 +7,7 @@ const {
   tail,
 } = require('ramda')
 const ValidationError = require('./Validation')
-const { validationErrors } = require('../../config/errorCodes')
+const { validationErrors } = require('../config/errorCodes')
 
 const logger = log4js.getLogger('api')
 

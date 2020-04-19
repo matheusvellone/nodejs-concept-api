@@ -1,5 +1,5 @@
 const BaseError = require('./BaseError')
-const { invalid } = require('../../config/errorCodes')
+const { invalid } = require('../config/errorCodes')
 
 const messageSuffix = 'invalid'
 

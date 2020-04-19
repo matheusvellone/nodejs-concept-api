@@ -1,5 +1,5 @@
 const BaseError = require('./BaseError')
-const { forbidden } = require('../../config/errorCodes')
+const { forbidden } = require('../config/errorCodes')
 
 const messageSuffix = 'forbidden'
 

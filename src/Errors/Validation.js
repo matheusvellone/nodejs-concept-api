@@ -1,5 +1,5 @@
 const BaseError = require('./BaseError')
-const { validationError } = require('../../config/errorCodes')
+const { validationError } = require('../config/errorCodes')
 
 class ValidationError extends BaseError {
   constructor(errors) {

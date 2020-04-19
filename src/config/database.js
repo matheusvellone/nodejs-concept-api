@@ -1,4 +1,4 @@
-require('../dotenv')
+require('../../dotenv')
 const { env } = require('./env')
 
 const {

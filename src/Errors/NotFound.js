@@ -1,5 +1,5 @@
 const BaseError = require('./BaseError')
-const { notFound } = require('../../config/errorCodes')
+const { notFound } = require('../config/errorCodes')
 
 const notFoundSufix = 'not-found'
 

@@ -1,5 +1,5 @@
 const BaseError = require('./BaseError')
-const { limitExceeded } = require('../../config/errorCodes')
+const { limitExceeded } = require('../config/errorCodes')
 
 const messageSuffix = 'limit-exceeded'
 

@@ -1,5 +1,5 @@
 const BaseError = require('./BaseError')
-const { conflict } = require('../../config/errorCodes')
+const { conflict } = require('../config/errorCodes')
 
 const suffixMessage = 'conflict'
 

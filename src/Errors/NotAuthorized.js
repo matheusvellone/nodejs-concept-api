@@ -1,5 +1,5 @@
 const BaseError = require('./BaseError')
-const { unauthorized } = require('../../config/errorCodes')
+const { unauthorized } = require('../config/errorCodes')
 
 const messageSuffix = 'unauthorized'
 

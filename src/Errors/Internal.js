@@ -1,8 +1,8 @@
 const log4js = require('log4js')
 
 const BaseError = require('./BaseError')
-const { internalError } = require('../../config/errorCodes')
-const { isProd } = require('../../config/env')
+const { internalError } = require('../config/errorCodes')
+const { isProd } = require('../config/env')
 
 const apiLogger = log4js.getLogger('api')
 

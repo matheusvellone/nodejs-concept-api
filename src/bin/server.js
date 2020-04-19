@@ -2,7 +2,7 @@ require('../../dotenv')
 const log4js = require('log4js')
 const app = require('../app')
 const database = require('../database')
-const { env } = require('../../config/env')
+const { env } = require('../config/env')
 
 const logger = log4js.getLogger('api')
 
